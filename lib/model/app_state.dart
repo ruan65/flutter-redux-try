@@ -15,4 +15,11 @@ class AppState {
   }
 
   get viewFontSize => sliderFontSize * 30;
+
+  @override
+  String toString() {
+    return 'AppState{sliderFontSize: $sliderFontSize, bold: $bold, italic: $italic}';
+  }
+
+
 }

@@ -22,15 +22,21 @@ class SettingsScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 20, top: 20),
               child: Text(
-                'Font Size: ${state.sliderFontSize.toInt()}',
+                'Font Size: ${state.viewFontSize.toInt()}',
                 style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.headline.fontSize),
+                    fontSize: state.viewFontSize,
+                    fontStyle:
+                        state.italic ? FontStyle.italic : FontStyle.normal,
+                    fontWeight:
+                        state.bold ? FontWeight.bold : FontWeight.normal),
               ),
             ),
             Slider(
                 min: 0.5,
                 value: state.sliderFontSize,
                 onChanged: (newValue) {
+                  print('slider: $newValue');
+
                   StoreProvider.of<AppState>(context)
                       .dispatch(FontSizeAction(newValue));
                 }),
@@ -64,7 +70,7 @@ class SettingsScreen extends StatelessWidget {
                       }),
                   Text(
                     'Italic',
-                    style: getStyle(state.bold, state.italic),
+                    style: getStyle(false, state.italic),
                   ),
                 ],
               ),
